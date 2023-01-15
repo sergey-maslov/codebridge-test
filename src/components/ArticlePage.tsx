@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { IArticle } from '../types/types';
 import './ArticlePage.scss';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Button from '@mui/material/Button';
 import axios from 'axios';
 
 const ArticlePage: FC = () => {
@@ -27,13 +28,13 @@ const ArticlePage: FC = () => {
         <div className='article-page' style={{
             backgroundImage: "url(" + article?.imageUrl + ")",
         }}>
-            {/* <img className='article-page__image' src={article?.imageUrl} alt={article?.title} /> */}
             <div className='article-page__content'>
                 <div className='article-page__title'>{article?.title}</div>
                 <div className='article-page__article'>{article?.summary}</div>
             </div>
-            <div className='article-page__button' onClick={() => navigate('/')}>Back to homepage</div>
-            <ArrowBackIcon />
+            <div className='article-page__button'>
+                <Button size="small" onClick={() => navigate('/')}><ArrowBackIcon />Back to homepage</Button>
+            </div>
         </div>
     )
 }
