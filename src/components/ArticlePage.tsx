@@ -4,7 +4,15 @@ import { IArticle } from '../types/types';
 import './ArticlePage.scss';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import axios from 'axios';
+
+const theme = createTheme({
+    typography: {
+        fontFamily: 'Montserrat',
+    }
+});
 
 const ArticlePage: FC = () => {
     const [article, setArticle] = useState<IArticle | null>(null)
@@ -33,7 +41,9 @@ const ArticlePage: FC = () => {
                 <div className='article-page__article'>{article?.summary}</div>
             </div>
             <div className='article-page__button'>
-                <Button size="small" onClick={() => navigate('/')}><ArrowBackIcon />Back to homepage</Button>
+                <ThemeProvider theme={theme}>
+                    <Button size="small" onClick={() => navigate('/')}><ArrowBackIcon />Back to homepage</Button>
+                </ThemeProvider>
             </div>
         </div>
     )
