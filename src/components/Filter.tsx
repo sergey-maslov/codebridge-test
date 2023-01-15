@@ -3,11 +3,12 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
+import './Filter.scss';
 
 const Filter: FC = () => {
 
     return (
-        <div>
+        <div className='filter'>
             <h3>Filter by keywords</h3>
             <Box
                 component="form"

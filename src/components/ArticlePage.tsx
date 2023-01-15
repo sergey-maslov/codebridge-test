@@ -1,7 +1,9 @@
 import React, { useState, useEffect, FC } from 'react';
-import { IArticle } from '../types/types';
-import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import { IArticle } from '../types/types';
+import './ArticlePage.scss';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from 'axios';
 
 const ArticlePage: FC = () => {
     const [article, setArticle] = useState<IArticle | null>(null)
@@ -22,11 +24,16 @@ const ArticlePage: FC = () => {
     })
 
     return (
-        <div>
-            <div>{article?.title}</div>
-            <img src={article?.imageUrl} alt={article?.title}/>
-            <div>{article?.summary}</div>
-            <div> <button onClick={() => navigate('/')}>Back to homepage</button></div>
+        <div className='article-page' style={{
+            backgroundImage: "url(" + article?.imageUrl + ")",
+        }}>
+            {/* <img className='article-page__image' src={article?.imageUrl} alt={article?.title} /> */}
+            <div className='article-page__content'>
+                <div className='article-page__title'>{article?.title}</div>
+                <div className='article-page__article'>{article?.summary}</div>
+            </div>
+            <div className='article-page__button' onClick={() => navigate('/')}>Back to homepage</div>
+            <ArrowBackIcon />
         </div>
     )
 }

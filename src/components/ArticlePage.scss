@@ -1,0 +1,27 @@
+.article-page {
+    background-size: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 245px;
+}
+
+.article-page__content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 150px 75px 0 75px;
+    background: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+.article-page__title {
+    margin-top: 35px;
+}
+
+.article-page__article {
+    margin: 50px 75px;
+}
