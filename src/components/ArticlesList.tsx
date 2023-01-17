@@ -42,11 +42,11 @@ const ArticlesList: FC<ArticlesListProps> = ({ articles }) => {
                                     image={article.imageUrl}
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
+                                    <Typography className="articles-list__title" gutterBottom variant="h5" component="div">
                                         {article.title}
                                     </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {article.summary}
+                                    <Typography className="articles-list__summary" variant="body2" color="text.secondary">
+                                        {article.summary.substring(0, 99) + "..."}
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
