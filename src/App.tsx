@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import ArticlesList from './components/ArticlesList';
 import axios from 'axios';
 import { IArticle } from './types/types';

@@ -9,6 +9,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { IArticle } from '../types/types';
+import { HighlightWithinTextarea } from 'react-highlight-within-textarea'
 
 interface CardItemProps {
     articles: IArticle[];
@@ -26,27 +27,33 @@ const CardItem: FC<CardItemProps> = ({ articles }) => {
             {articles.map(article =>
                 <div key={article.id} className="card">
                     <ThemeProvider theme={theme}>
-                            <Card>
-                                <CardMedia
-                                    component="img"
-                                    alt="green iguana"
-                                    height="217"
-                                    image={article.imageUrl}
-                                />
-                                <CardContent>
-                                    <Typography className="articles-list__title" gutterBottom variant="h6" component="div">
-                                        {article.title}
-                                    </Typography>
-                                    <Typography className="articles-list__summary" variant="body2" color="text.secondary">
-                                        {article.summary.substring(0, 99) + "..."}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <Link to={'article/' + article.id}>
-                                        <Button size="small">Read more <ArrowForwardIcon /></Button>
-                                    </Link>
-                                </CardActions>
-                            </Card>
+                        <Card>
+                            <CardMedia
+                                component="img"
+                                alt="green iguana"
+                                height="217"
+                                image={article.imageUrl}
+                            />
+                            <CardContent>
+                                <Typography className="articles-list__title" gutterBottom variant="h6" component="span">
+                                    <HighlightWithinTextarea
+                                        value={article.title}
+                                        highlight={/pe|or/gi}
+                                    />
+                                </Typography>
+                                <Typography className="articles-list__summary" variant="body2" color="text.secondary" component="span">
+                                    <HighlightWithinTextarea
+                                        value={article.summary.substring(0, 99) + "..."}
+                                        highlight={/an|eu/gi}
+                                    />
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Link to={'article/' + article.id}>
+                                    <Button size="small">Read more <ArrowForwardIcon /></Button>
+                                </Link>
+                            </CardActions>
+                        </Card>
                     </ThemeProvider>
                 </div>
             )}
