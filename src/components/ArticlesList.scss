@@ -12,11 +12,13 @@
 
 .articles-list__title {
     overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 2;
-           line-clamp: 2; 
-   -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    min-height: 130px;
+
 }
 
 .articles-list__summary {
