@@ -13,20 +13,18 @@ function App() {
 
   function articlesFilter() {
     const reg = new RegExp(`${inputValue.trim().replace(/\s\s+/g, ' ').split(' ').join('|')}`, "gi");
-    let filteredArrayTitles = [];
+    let filteredArray = [];
     for (let article of articles) {
-      if (article.title.match(reg) && filteredArrayTitles.filter(item => item.id === article.id).length === 0) {
-        filteredArrayTitles.push(article);
+      if (article.title.match(reg) && filteredArray.filter(item => item.id === article.id).length === 0) {
+        filteredArray.push(article);
       }
     }
-    let filteredArraySummary = [];
     for (let article of articles) {
-      if (article.summary.substring(0, 99).match(reg) && filteredArraySummary.filter(item => item.id === article.id).length === 0 && filteredArrayTitles.filter(item => item.id === article.id).length === 0) {
-        filteredArraySummary.push(article);
+      if (article.summary.substring(0, 99).match(reg) && filteredArray.filter(item => item.id === article.id).length === 0) {
+        filteredArray.push(article);
       }
     }
-    const result = [...filteredArrayTitles, ...filteredArraySummary];
-    return result;
+    return filteredArray;
   }
 
   async function fetchData() {

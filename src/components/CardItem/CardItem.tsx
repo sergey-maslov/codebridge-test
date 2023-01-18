@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { IArticle } from '../../types/types';
 import { HighlightWithinTextarea } from 'react-highlight-within-textarea'
 import { useAppSelector } from '../../hook';
+import './CardItem.scss';
 
 interface CardItemProps {
     articles: IArticle[];
@@ -53,7 +54,7 @@ const CardItem: FC<CardItemProps> = ({ articles }) => {
                                 </Typography>
                                 <Typography className="articles-list__summary" variant="body2" color="text.secondary" component="span">
                                     <HighlightWithinTextarea
-                                        value={article.summary.substring(0, 99) + "..."}
+                                        value={article.summary.length > 100 ? article.summary.substring(0, 99) + "..." : article.summary}
                                         highlight={inputToReg(inputValue.inputSearch)}
                                     />
                                 </Typography>

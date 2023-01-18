@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { IArticle } from '../../types/types';
-import './ArticlesList.scss';
 import Filter from '../Filter/Filter';
 import CardItem from '../CardItem/CardItem';
 
