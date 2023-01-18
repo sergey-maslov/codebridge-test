@@ -8,7 +8,6 @@ import { useAppDispatch } from '../../hook';
 import { searchInput } from '../../store/searchSlice';
 
 const Filter: FC = () => {
-
     const dispatch = useAppDispatch();
 
     return (

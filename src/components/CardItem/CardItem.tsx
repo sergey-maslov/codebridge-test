@@ -23,16 +23,14 @@ const theme = createTheme({
 });
 
 const CardItem: FC<CardItemProps> = ({ articles }) => {
-
     const inputValue = useAppSelector(state => state.search);
-    console.log("inputValue: ", inputValue.inputSearch);
 
     function inputToReg(value: string) {
-        if (value.length < 1) {
-            return '';
+        if (value.trim().length < 1) {
+            return new RegExp('dklfgs');
         }
-        const regex = new RegExp(`${value.trim().split(' ').join('|')}`, "gi");
-        console.log("regex: ", regex);
+        const regex = new RegExp(`${value.trim().replace(/\s\s+/g, ' ').split(' ').join('|')}`, "gi");
+        console.log(regex);
         return regex;
     }
 
@@ -60,7 +58,7 @@ const CardItem: FC<CardItemProps> = ({ articles }) => {
                                 <Typography className="articles-list__summary" variant="body2" color="text.secondary" component="span">
                                     <HighlightWithinTextarea
                                         value={article.summary.substring(0, 99) + "..."}
-                                        // highlight={inputToReg(inputValue.inputSearch}
+                                        highlight={inputToReg(inputValue.inputSearch)}
                                     />
                                 </Typography>
                             </CardContent>
