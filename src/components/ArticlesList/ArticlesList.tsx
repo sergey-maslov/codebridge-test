@@ -12,7 +12,7 @@ const ArticlesList: FC<ArticlesListProps> = ({ articles }) => {
 
     return (
         <div>
-            <Filter />
+            <Filter results={articles.length}/>
             <CardItem articles={articles} />
         </div>
     )

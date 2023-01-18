@@ -29,12 +29,8 @@ const CardItem: FC<CardItemProps> = ({ articles }) => {
         if (value.trim().length < 1) {
             return new RegExp('dklfgs');
         }
-        const regex = new RegExp(`${value.trim().replace(/\s\s+/g, ' ').split(' ').join('|')}`, "gi");
-        console.log(regex);
-        return regex;
+        return new RegExp(`${value.trim().replace(/\s\s+/g, ' ').split(' ').join('|')}`, "gi");
     }
-
-    inputToReg(inputValue.inputSearch);
 
     return (
         <div className="articles-list">
