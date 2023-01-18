@@ -41,7 +41,7 @@ const CardItem: FC<CardItemProps> = ({ articles }) => {
                         <Card>
                             <CardMedia
                                 component="img"
-                                alt="green iguana"
+                                alt={article.imageUrl}
                                 height="217"
                                 image={article.imageUrl}
                             />
