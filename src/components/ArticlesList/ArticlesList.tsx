@@ -10,7 +10,7 @@ interface ArticlesListProps {
 }
 
 const ArticlesList: FC<ArticlesListProps> = ({ articles }) => {
-    const inputValue = useAppSelector(state => state.search.inputSearch.toLowerCase());
+    const inputValue = useAppSelector(state => state.search.inputSearch);
 
     function articlesFilter() {
         const reg = new RegExp(`${inputValue.trim().replace(/\s\s+/g, ' ').split(' ').join('|')}`, "gi");
