@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,8 +8,9 @@ import Typography from '@mui/material/Typography';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-import { IArticle } from '../types/types';
+import { IArticle } from '../../types/types';
 import { HighlightWithinTextarea } from 'react-highlight-within-textarea'
+import { useAppSelector } from '../../hook';
 
 interface CardItemProps {
     articles: IArticle[];
@@ -22,6 +23,21 @@ const theme = createTheme({
 });
 
 const CardItem: FC<CardItemProps> = ({ articles }) => {
+
+    const inputValue = useAppSelector(state => state.search);
+    console.log("inputValue: ", inputValue.inputSearch);
+
+    function inputToReg(value: string) {
+        if (value.length < 1) {
+            return '';
+        }
+        const regex = new RegExp(`${value.trim().split(' ').join('|')}`, "gi");
+        console.log("regex: ", regex);
+        return regex;
+    }
+
+    inputToReg(inputValue.inputSearch);
+
     return (
         <div className="articles-list">
             {articles.map(article =>
@@ -38,13 +54,13 @@ const CardItem: FC<CardItemProps> = ({ articles }) => {
                                 <Typography className="articles-list__title" gutterBottom variant="h6" component="span">
                                     <HighlightWithinTextarea
                                         value={article.title}
-                                        highlight={/pe|or/gi}
+                                        highlight={inputToReg(inputValue.inputSearch)}
                                     />
                                 </Typography>
                                 <Typography className="articles-list__summary" variant="body2" color="text.secondary" component="span">
                                     <HighlightWithinTextarea
                                         value={article.summary.substring(0, 99) + "..."}
-                                        highlight={/an|eu/gi}
+                                        // highlight={inputToReg(inputValue.inputSearch}
                                     />
                                 </Typography>
                             </CardContent>

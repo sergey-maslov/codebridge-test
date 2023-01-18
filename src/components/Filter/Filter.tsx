@@ -4,8 +4,12 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import './Filter.scss';
+import { useAppDispatch } from '../../hook';
+import { searchInput } from '../../store/searchSlice';
 
 const Filter: FC = () => {
+
+    const dispatch = useAppDispatch();
 
     return (
         <div className='filter'>
@@ -19,6 +23,7 @@ const Filter: FC = () => {
                 autoComplete="off"
             >
                 <TextField
+                    onChange={e => dispatch(searchInput(e.target.value))}
                     autoFocus={true}
                     id="outlined-search"
                     type="search"

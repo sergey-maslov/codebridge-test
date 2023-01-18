@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import ArticlesList from './components/ArticlesList';
+import ArticlesList from './components/ArticlesList/ArticlesList';
 import axios from 'axios';
 import { IArticle } from './types/types';
 import './App.scss';
-import ArticlePage from './components/ArticlePage';
+import ArticlePage from './components/ArticlePage/ArticlePage';
 
 function App() {
   const [articles, setArticles] = useState<IArticle[]>([]);

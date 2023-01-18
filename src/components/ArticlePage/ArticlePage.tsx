@@ -1,6 +1,6 @@
 import React, { useState, useEffect, FC } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { IArticle } from '../types/types';
+import { IArticle } from '../../types/types';
 import './ArticlePage.scss';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Button from '@mui/material/Button';
