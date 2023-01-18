@@ -9,19 +9,30 @@ import { useAppSelector } from './hook';
 
 function App() {
   const [articles, setArticles] = useState<IArticle[]>([]);
-  const inputValue = useAppSelector(state => state.search.inputSearch.toUpperCase());
+  const inputValue = useAppSelector(state => state.search.inputSearch.toLowerCase());
 
   function articlesFilter() {
-    const filteredArrayTitles = articles.filter(item => item.title.toUpperCase().includes(inputValue));
-    const filteredArraySummary = articles.filter(item => !item.title.toUpperCase().includes(inputValue)).filter(item => item.summary.substring(0, 99).toUpperCase().includes(inputValue))
-    return [...filteredArrayTitles, ...filteredArraySummary];
+    const reg = new RegExp(`${inputValue.trim().replace(/\s\s+/g, ' ').split(' ').join('|')}`, "gi");
+    let filteredArrayTitles = [];
+    for (let article of articles) {
+      if (article.title.match(reg) && filteredArrayTitles.filter(item => item.id === article.id).length === 0) {
+        filteredArrayTitles.push(article);
+      }
+    }
+    let filteredArraySummary = [];
+    for (let article of articles) {
+      if (article.summary.substring(0, 99).match(reg) && filteredArraySummary.filter(item => item.id === article.id).length === 0 && filteredArrayTitles.filter(item => item.id === article.id).length === 0) {
+        filteredArraySummary.push(article);
+      }
+    }
+    const result = [...filteredArrayTitles, ...filteredArraySummary];
+    return result;
   }
 
   async function fetchData() {
     try {
       const response = await axios.get<IArticle[]>('https://api.spaceflightnewsapi.net/v3/articles')
       setArticles(response.data)
-      console.log("fetched!");
     } catch (error) {
       alert(error)
     }

@@ -1,11 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const inputSearch = '';
-const resultsAmount = 0;
 
 const initialState = {
     inputSearch,
-    resultsAmount
 };
 
 const searchSlice = createSlice({
@@ -15,11 +13,8 @@ const searchSlice = createSlice({
         searchInput(state, action: PayloadAction<string>) {
             state.inputSearch = action.payload;
         },
-        searchAmount(state, action: PayloadAction<number>) {
-            state.resultsAmount = action.payload;
-        }
     },
 });
 
-export const { searchInput, searchAmount } = searchSlice.actions;
+export const { searchInput } = searchSlice.actions;
 export default searchSlice.reducer;

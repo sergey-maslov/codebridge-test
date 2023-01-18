@@ -15,7 +15,6 @@ interface FilterProps {
 const Filter: FC<FilterProps> = (results) => {
     const dispatch = useAppDispatch();
     const inputValue = useAppSelector(state => state.search);
-    console.log(results.results);
 
     return (
         <div className='filter'>
